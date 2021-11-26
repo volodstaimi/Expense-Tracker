@@ -1,0 +1,28 @@
+
+import ExpenseItem from './ExpenseItem';
+import './ExpensesList.css'
+
+const ExpensesList = props => {
+
+    if (props.items.length === 0) {
+        return <h2 className="expenses-list__fallback">Found No Expenses</h2>
+    }
+
+    return (
+    <ul className="expenses-list">
+        {props.items.map((expense) => (
+            <ExpenseItem
+                //You should always add such a key when using map function.
+                key={expense.id} //This will help React differentiate items (Expenses will not be overwrited but instead they will be added)
+                title={expense.title}
+                amount={"$" + expense.amount}
+                date={expense.date}
+            />
+        ))};
+    </ul>
+    )
+
+};
+
+
+export default ExpensesList;
